@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Email Generator</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Saved Emails</h1>
+
+<ul>
+    <% savedEmails.forEach( element => { %>
+        <form action="/email/delete" method="POST">
+            <li> <%= element.email %> </li>
+            <%= element.date %>
+            <input type="hidden" value="<%= element.email %>" name ="email">
+            <input type="submit" value="Delete"> <br><br>
+        </form>
+    <% }) %>
+</ul>
+
+</body>
+</html>

@@ -9,7 +9,7 @@
 
 <ul>
     <% availableEmails.forEach( email => { %>
-        <form class="new-item" action="/email/save" method="POST">
+        <form action="/email/save" method="POST">
             <li> <%= email %> </li>
             <input type="hidden" value="<%= email %>" name ="email">
             <input type="submit" value="Save"> <br><br>
