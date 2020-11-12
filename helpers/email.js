@@ -5,24 +5,29 @@ const resolver = new Resolver();
 
 const domains = ['.ua', '.com', '.uk', '.pl', '.org', '.net', '.us', '.edu.ua', '.edu'];
 
+const mxValidation = async ( domain ) => {
+    try {
+        await resolver.resolveMx(domain);
+    } catch (error) {
+        return false;
+    }
+        return true;
+}
+
 const domainsValidator =  async company => {
     const availableDomains = [];
 
     for (const dom of domains) {
-        
-        try {
-            await resolver.resolveMx(`${company}${dom}`)
-        } catch (error) {
-            console.log('Not valid domain' );
-            continue;
-        }
-        availableDomains.push(`${company}${dom}`)
+        const mxResult = await mxValidation(`${company}${dom}`);
+        if ( mxResult ) availableDomains.push(`${company}${dom}`);
       }
 
     return availableDomains;
 }
 
 const namesGenerator = ({name, surname}) => {
+    const names = [];
+    const symbols = ['','.','_',]
     const constructorData = [
     {name:`${name}`, surname: `${surname}`},
     {name:`${name[0]}`, surname: `${surname}`},
@@ -33,15 +38,11 @@ const namesGenerator = ({name, surname}) => {
     {name:`${name[0]}${name[1]}`, surname: `${surname[0]}${surname[1]}`},
     {name:`${name}`, surname: `${surname[0]}${surname[1]}`} ]
 
-    const names = [];
-
     constructorData.forEach( row => {
-        names.push(`${row.name}${row.surname}`);
-        names.push(`${row.surname}${row.name}`);
-        names.push(`${row.name}.${row.surname}`);
-        names.push(`${row.surname}.${row.name}`);
-        names.push(`${row.name}_${row.surname}`);
-        names.push(`${row.surname}_${row.name}`);
+        symbols.forEach( symbol  => {
+            names.push(`${row.name}${symbol}${row.surname}`);
+            names.push(`${row.surname}${symbol}${row.name}`);
+        })
     })
 
     return names;

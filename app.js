@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser')
-const emailRouter = require('./routs/emailRouts')
+const emailRouter = require('./routes/emailRoutes')
 const app = express();
 
 app.set("view engine", "ejs");
