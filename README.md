@@ -8,8 +8,7 @@ This project is simple email domains MX validator and email generator.Also you c
 	
 ## Technologies
 Project is created with:
-* "body-parser": 1.19
-* "ejs": 3.1.5
+* "node": 12.16.1
 * "express": 4.17.1
 
 ## Setup
@@ -18,5 +17,5 @@ To run this project, install it locally using npm:
 ```
 $ npm install
 $ npm start
-And open you browser and go http://localhost:3000/email/
+And open you browser and follow  http://localhost:3000/email/
 ```

@@ -5,13 +5,13 @@ const resolver = new Resolver();
 
 const domains = ['.ua', '.com', '.uk', '.pl', '.org', '.net', '.us', '.edu.ua', '.edu'];
 
-const mxValidation = async ( domain ) => {
+const mxValidation = async domain => {
     try {
         await resolver.resolveMx(domain);
+        return true;
     } catch (error) {
         return false;
     }
-        return true;
 }
 
 const domainsValidator =  async company => {
