@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Email Generator</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Available Emails</h1>
+
+<ul>
+    <% availableEmails.forEach( email => { %>
+        <form class="new-item" action="/email/save" method="POST">
+            <li> <%= email %> </li>
+            <input type="hidden" value="<%= email %>" name ="email">
+            <input type="submit" value="Save"> <br><br>
+        </form>
+    <% }) %>
+</ul>
+
+</body>
+</html>
